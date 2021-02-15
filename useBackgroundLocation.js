@@ -36,8 +36,6 @@ const config = {
 
 const useBackgroundLocation = () => {
   const [position, setPosition] = useState(undefined);
-
-  // We don't know about the state, until the callback on BackgroundGeolocation.ready is fired
   const [geolocationIsStarted, setGeolocationIsStarted] = useState(undefined);
 
   // @event location
@@ -79,7 +77,10 @@ const useBackgroundLocation = () => {
   }, []);
 
   useEffect(() => {
-    console.log('- BackgroundGeolocation start');
+    if (geolocationIsStarted || geolocationIsStarted === undefined) {
+      return;
+    }
+
     BackgroundGeolocation.start(() => {
       console.log('- BackgroundGeolocation started');
       setGeolocationIsStarted(true);
@@ -87,7 +88,7 @@ const useBackgroundLocation = () => {
       BackgroundGeolocation.getCurrentPosition();
       BackgroundGeolocation.getCurrentPosition();
     });
-  }, []);
+  }, [geolocationIsStarted, setGeolocationIsStarted]);
 
   return position;
 };
