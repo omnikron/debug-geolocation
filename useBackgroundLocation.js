@@ -84,8 +84,12 @@ const useBackgroundLocation = () => {
       console.log('- BackgroundGeolocation started');
       setGeolocationIsStarted(true);
       BackgroundGeolocation.changePace(true);
+      BackgroundGeolocation.getCurrentPosition();
+      BackgroundGeolocation.getCurrentPosition();
     });
   }, []);
+
+  return position;
 };
 
 export default useBackgroundLocation;

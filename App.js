@@ -8,12 +8,18 @@
 
 import React from 'react';
 import {Text} from 'react-native';
-import useBackgroundLocation from 'useBackgroundLocation';
+import useBackgroundLocation from './useBackgroundLocation';
 
 const App = () => {
-  useBackgroundLocation();
+  const position = useBackgroundLocation();
 
-  return <Text>Step One</Text>;
+  return (
+    <Text>
+      {position
+        ? `${position.latitude} ${position.longitude}`
+        : 'Waiting for position'}
+    </Text>
+  );
 };
 
 export default App;
