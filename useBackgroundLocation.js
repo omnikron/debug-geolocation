@@ -57,7 +57,7 @@ const useBackgroundLocation = () => {
     BackgroundGeolocation.start(() => {
       console.log('- BackgroundGeolocation started');
       setGeolocationIsStarted(true);
-      BackgroundGeolocation.changePace(true);
+      setTimeout(() => BackgroundGeolocation.changePace(true), 1000);
       BackgroundGeolocation.getCurrentPosition();
       BackgroundGeolocation.getCurrentPosition();
     });
